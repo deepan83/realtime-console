@@ -12,14 +12,9 @@ require('./app/routes')(app);
 server.listen(port);
 
 io.on('connection', function(client) {
-
-    client.on('join', function(data) {
-        console.log(data);
-    });
     client.on('notifyOutage', function(data) {
-        console.log(data);
+      io.emit('outage', 'Hello from server');
     });
-    client.emit('messages', 'Hello from server');
 
 });
 
