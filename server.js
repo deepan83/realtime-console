@@ -13,7 +13,7 @@ server.listen(port);
 
 io.on('connection', function(client) {
     client.on('notifyOutage', function(data) {
-      io.emit('outage', 'Hello from server');
+      io.emit('outage', data);
     });
 
 });
