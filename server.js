@@ -55,8 +55,10 @@ io.on('connection', function(client) {
   });
 
   client.on('remove-message', function(messageType) {
-    var messageToRemove = messagesOnConnect.find(function(messageOnConnect) {
-      return messageOnConnect.messageType === messageType;
+    var messageToRemove = messagesOnConnect.forEach(function(messageOnConnect) {
+      if (messageOnConnect.messageType === messageType) {
+        return messageOnConnect;
+      }
     });
     var filteredMessagesOnConnect = messagesOnConnect.filter(function(messageOnConnect) {
       return messageOnConnect.messageType !== messageType;
