@@ -24,7 +24,7 @@ io.on('connection', function(client) {
 
     if (messagesOnConnect.length) {
       messagesOnConnect.forEach(function(messageOnConnect) {
-        if (messageOnConnect.appsToNotify.includes(data.app)) {
+        if (messageOnConnect.appsToNotify.indexOf(data.app) !== -1) {
           io.to(client.id).emit(messageOnConnect.messageType, messageOnConnect.message);
         }
       });
@@ -43,7 +43,7 @@ io.on('connection', function(client) {
 
     clients
       .filter(function(client) {
-        return data.appsToNotify.includes(client.app);
+        return data.appsToNotify.indexOf(client.app) !== -1;
       })
       .forEach(function(client) {
         io.to(client.id).emit(data.messageType, data.message);
