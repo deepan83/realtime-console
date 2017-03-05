@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/deepan83/realtime-console#readme",
   "dependencies": {
+    "array.prototype.find": "^2.0.3",
     "express": "^4.15.0",
     "socket.io": "^1.7.3"
   },
