@@ -23,7 +23,7 @@ io.on('connection', function(client) {
     });
 
     if (messagesOnConnect.length) {
-      messagesOnConnect.forEach((messageOnConnect) => {
+      messagesOnConnect.forEach(function(messageOnConnect) {
         if (messageOnConnect.appsToNotify.includes(data.app)) {
           io.to(client.id).emit(messageOnConnect.messageType, messageOnConnect.message);
         }
@@ -42,23 +42,23 @@ io.on('connection', function(client) {
     }
 
     clients
-      .filter((client) => {
+      .filter(function(client) {
         return data.appsToNotify.includes(client.app);
       })
-      .forEach((client) => {
+      .forEach(function(client) {
         io.to(client.id).emit(data.messageType, data.message);
       });
   });
 
-  client.on('request-existing-messages', () => {
+  client.on('request-existing-messages', function() {
     io.to(client.id).emit('existing-messages', messagesOnConnect);
   });
 
-  client.on('remove-message', (messageType) => {
-    let messageToRemove = messagesOnConnect.find((messageOnConnect) => {
+  client.on('remove-message', function(messageType) {
+    let messageToRemove = messagesOnConnect.find(function(messageOnConnect) {
       return messageOnConnect.messageType === messageType;
     });
-    let filteredMessagesOnConnect = messagesOnConnect.filter((messageOnConnect) => {
+    let filteredMessagesOnConnect = messagesOnConnect.filter(function(messageOnConnect) {
       return messageOnConnect.messageType !== messageType;
     });
 
